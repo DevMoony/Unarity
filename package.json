@@ -22,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/ChaosPhoe/Unarity/issues"
   },
-  "homepage": "https://github.com/ChaosPhoe/Unarity#readme"
+  "homepage": "https://github.com/ChaosPhoe/Unarity#readme",
+  "dependencies": {
+    "discord.js": "github:discordjs/discord.js",
+    "dotenv": "^8.2.0"
+  }
 }
