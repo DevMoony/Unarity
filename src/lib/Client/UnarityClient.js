@@ -6,6 +6,8 @@ module.exports = class UnarityClient extends Client {
         super(...arguments);
         super.login(token);
 
-        this.handler = new Handler(prefix);
+        this.handler = new Handler(prefix, this);
+        this.handler.loadCommands(__dirname + "../../commands");
+        this.handler.loadCommands(__dirname + "../../events");
     }
 };

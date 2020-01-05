@@ -1,3 +1,3 @@
 module.exports = {
-    UnarityClient: require("./Client/UnarityClient")
+    UnarityClient: require("./Client/UnarityClient"),
 }
