@@ -1,4 +1,5 @@
 require("dotenv").config({ path: __dirname + "/../.env" });
 const { UnarityClient } = require("./lib/index");
+require("./lib/structures/Message")()
 
-const bot = new UnarityClient("u!", process.env.TOKEN);
+new UnarityClient("u!", process.env.TOKEN);

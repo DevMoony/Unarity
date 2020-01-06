@@ -1,4 +1,3 @@
-const { Client, Collection } = require("discord.js");
 const { readdirSync } = require("fs");
 
 module.exports = class Handler {
@@ -9,54 +8,46 @@ module.exports = class Handler {
     loadCommands(dir) {
         if (!dir) throw Error("No Command Dir Detected.");
         try {
-
+            console.log("Loading Commands");
             readdirSync(dir).forEach((category) => {
                 readdirSync(`${dir}/${category}`).filter((cmd) => cmd.endsWith(".js")).forEach((command) => {
                     try {
                         let cmd = require(`${dir}/${category}/${command}`);
-                        cmd = this.options.classes ? new cmd(this.bot) : cmd;
+                        cmd = new cmd();
                         cmd.bot = this.bot;
                         cmd.category = category;
                         this.bot.commands.set(cmd.name, cmd);
-                        this.bot.emit("cLoad", cmd);
+                        console.log(`Loaded: ${command}`);
                     } catch (e) {
-                        this.bot.emit("cLoadErr", e);
+                        console.log(`Error: ${command} => ${e}`);
                     }
                 });
             });
 
         } catch (e) {
-            this.bot.emit("cLoadErr", e);
+            console.log(`Error: => ${e}`);
         };
     }
     loadEvents(dir) {
         if (!dir) throw Error("No Event Dir Detected");
         try {
 
-
+            console.log("Loading Events");
             readdirSync(dir).forEach((category) => {
                 readdirSync(`${dir}/${category}`).filter((evt) => evt.endsWith(".js")).forEach((event) => {
                     try {
-                        let evt = require(`${dir}/${category}/${command}`);
+                        let evt = require(`${dir}/${category}/${event}`);
                         event = event.split(".js")[0];
                         evt = new evt();
-                        evt.bot = this.bot;
-
-                        this.bot.on(event, evt.bind(null, this.bot));
-                        this.bot.emit("eLoad", event);
+                        this.bot.on(event, evt.run.bind(null, this.bot));
+                        console.log(`Loaded: ${evt.name}`);
                     } catch (e) {
-                        this.bot.emit("eLoadErr", e);
+                        console.log(`Error: ${event} => ${e}`);
                     }
                 });
             });
         } catch (e) {
-            this.bot.emit("eLoadErr", e);
+            console.log(`Error: => ${e}`);
         };
     }
 }
-
-const { Client } = require("discord.js");
-const Handler = require("./Handler.js");
-const bot = new Client();
-
-bot.handler = new Handler("!", bot, { events: `${__dirname}/events`, commands: `${__dirname}/commands` }, { loadEvents: true, loadCommands: true, logging: true, classes: false });

@@ -1,7 +1,6 @@
 module.exports = class Event {
-    constructor(name, options) {
+    constructor(name) {
         this.name = name;
-        this.options = options;
     }
     run() {
         console.log("Not Finished")
