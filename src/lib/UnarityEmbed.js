@@ -15,9 +15,8 @@ module.exports = class UnarityEmbed extends MessageEmbed {
     }
     error(err, user) {
         return this
-            .base(user)
+            .base(err, user)
             .setTitle("Oh no! An error >:(")
             .setColor("#ff0000")
-            .setDescription(err);
     }
 };

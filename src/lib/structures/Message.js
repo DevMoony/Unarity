@@ -8,6 +8,7 @@ module.exports = () => Structures.extend("Message", Message =>
         };
 
         sm(msg, type = "base") {
+            console.log(["base", "error"].includes(type))
             if (!["base", "error"].includes(type)) type = "base";
             return this.channel.send(
                 new UnarityEmbed(this.client)[type](msg, this.author)

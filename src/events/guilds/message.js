@@ -4,7 +4,11 @@ module.exports = class Message extends Event {
         super("message-receive")
     }
     run(bot, message) {
-        if(message.author.bot)
-            message.sm("Chaos is too bored to make the command running stuff");
+        if (message.author.bot) return;
+
+        const [cmd, ...args] = message.content.trim().slice(1).split(" ");
+        
+        const command = bot.handler.getCommand(cmd);
+        if (command) command.run(message, args);
     }
 }

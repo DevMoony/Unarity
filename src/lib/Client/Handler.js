@@ -50,4 +50,7 @@ module.exports = class Handler {
             console.log(`Error: => ${e}`);
         };
     }
+    getCommand(command) {
+        return this.bot.commands.get(command) || this.bot.commands.find((cmd) => cmd.alias === command) || false;
+    }
 }
