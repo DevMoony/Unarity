@@ -1,8 +1,7 @@
 const { readdirSync } = require("fs");
 
 module.exports = class Handler {
-    constructor(prefix, bot) {
-        this.prefix = prefix;
+    constructor(bot) {
         this.bot = bot;
     }
     loadCommands(dir) {
@@ -39,6 +38,7 @@ module.exports = class Handler {
                         let evt = require(`${dir}/${category}/${event}`);
                         event = event.split(".js")[0];
                         evt = new evt();
+                        evt.bot = this.bot;
                         this.bot.on(event, evt.run.bind(null, this.bot));
                         console.log(`Loaded: ${evt.name}`);
                     } catch (e) {

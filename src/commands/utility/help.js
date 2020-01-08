@@ -5,4 +5,6 @@ module.exports = class Help extends Command {
             aliases: ["h"],    
         });
     }
+    run(message, args) {
+    }
 }
