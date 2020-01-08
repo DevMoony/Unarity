@@ -25,7 +25,7 @@
   "homepage": "https://github.com/ChaosPhoe/Unarity#readme",
   "dependencies": {
     "discord.js": "github:discordjs/discord.js",
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
     "mongoose": "^4.13.20"
   }
 }
