@@ -4,7 +4,8 @@ module.exports = class Member {
     constructor(id, guildId) {
         this.id = id;
         this.guildId = guildId;
-        this._member;
+        this._member = false;
+
     }
     async _init() {
         this._member = await Members.findOne({ id: this.id, guildId: this.guildId })

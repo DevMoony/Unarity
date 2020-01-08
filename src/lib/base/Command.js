@@ -3,7 +3,7 @@ module.exports = class Command {
         this.name = name;
         this.options = options;
     }
-    run(message, args) {
-        message.sm("Command is not ready to be used!", "error" );
+    run(message) {
+      message.sm("Command not ready!");
     }
-}
+};

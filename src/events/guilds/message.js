@@ -6,7 +6,7 @@ module.exports = class Message extends Event {
     run(bot, message) {
         if (message.author.bot) return;
 
-        if(!message.content.startsWith(message.guild.db.prefix)) return;        
+        if(!message.content.startsWith("!")) return;
         const [cmd, ...args] = message.content.trim().slice(1).split(" ");
         const command = bot.handler.getCommand(cmd);
         if (command) command.run(message, args);

@@ -11,7 +11,6 @@ module.exports = () => Structures.extend("Guild", Guild =>
             if (!this.database) new DBGuild(this.id)._init().then((g) => {
                 this.database = g;
                 this.database.save();
-                console.log(this.database);
             });
             return this.database;
         }
