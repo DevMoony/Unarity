@@ -5,6 +5,7 @@ module.exports = class Ping extends Command {
             aliases: ["p"],
         });
     }
+
     async run(message) {
         const msg = await message.sm(`🏓 Pinging....`);
         msg.delete(100);

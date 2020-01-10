@@ -1,4 +1,4 @@
-const { Structures } = require("discord.js");
+const {Structures} = require("discord.js");
 const DBMember = require("../database/Member");
 
 module.exports = () => Structures.extend("GuildMember", GuildMember =>
@@ -7,8 +7,10 @@ module.exports = () => Structures.extend("GuildMember", GuildMember =>
             super(...arguments);
             this.database = false;
         };
+
         get db() {
-            if (!this.database) new DBMember(this.id, this.guild.id)._init().then((g) => {
+            if (this.database) return this.database;
+            new DBMember(this.id, this.guild.id)._init().then((g) => {
                 this.database = g;
                 this.database.save();
             });

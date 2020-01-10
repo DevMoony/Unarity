@@ -8,7 +8,8 @@ module.exports = () => Structures.extend("Guild", Guild =>
             this.database = false;
         };
         get db() {
-            if (!this.database) new DBGuild(this.id)._init().then((g) => {
+            if(this.database) return this.database;
+            new DBGuild(this.id)._init().then((g) => {
                 this.database = g;
                 this.database.save();
             });

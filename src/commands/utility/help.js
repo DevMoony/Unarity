@@ -6,5 +6,6 @@ module.exports = class Help extends Command {
         });
     }
     run(message, args) {
+        message.sm("n0");
     }
 }

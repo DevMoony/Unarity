@@ -5,4 +5,4 @@ module.exports = class Event {
     run() {
         console.log("Not Finished")
     }
-}
+};

@@ -1,10 +1,11 @@
-const { model, Schema } = require("mongoose");
+const mongoose = require("mongoose");
 
-const guildSchema = new Schema({
+const guildSchema = new mongoose.Schema({
     id: String,
-    settings: {
-        prefix: String,
-        logs: Array
+    prefix: String,
+    logs: {
+        enabled: Array,
+        channel: String
     },
     features: {
         enabled: Array,
@@ -13,4 +14,4 @@ const guildSchema = new Schema({
     }
 });
 
-module.exports = model("Guild", guildSchema);
+module.exports = mongoose.model("Guild", guildSchema);

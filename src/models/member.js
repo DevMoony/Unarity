@@ -1,6 +1,6 @@
-const { model, Schema } = require("mongoose");
+const mongoose = require("mongoose");
 
-const memberSchema = new Schema({
+const memberSchema = new mongoose.Schema({
     id: String,
     guildId: String,
     xp: Number,
@@ -9,4 +9,4 @@ const memberSchema = new Schema({
     muteTime: Number
 });
 
-module.exports = model("Guild", memberSchema);
+module.exports = mongoose.model("Member", memberSchema);

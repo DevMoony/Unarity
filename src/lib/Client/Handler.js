@@ -1,9 +1,10 @@
-const { readdirSync } = require("fs");
-
+const {readdirSync} = require("fs");
+const {devs} = require("../../config.json");
 module.exports = class Handler {
     constructor(bot) {
         this.bot = bot;
     }
+
     loadCommands(dir) {
         if (!dir) throw Error("No Command Dir Detected.");
         try {
@@ -25,8 +26,10 @@ module.exports = class Handler {
 
         } catch (e) {
             console.log(`Error: => ${e}`);
-        };
+        }
+        ;
     }
+
     loadEvents(dir) {
         if (!dir) throw Error("No Event Dir Detected");
         try {
@@ -48,9 +51,22 @@ module.exports = class Handler {
             });
         } catch (e) {
             console.log(`Error: => ${e}`);
-        };
+        }
+        ;
     }
+
     getCommand(command) {
-        return this.bot.commands.get(command) || this.bot.commands.find((cmd) => cmd.alias === command) || false;
+        return this.bot.commands.get(command) || this.bot.commands.find((cmd) => cmd.options.alias === command) || false;
     }
-}
+
+    checkPerms(member, permissions) {
+        if (!Array.isArray(permissions)) return member.hasPermission(permissions, {
+            checkAdmin: true,
+            checkOwner: true
+        }) || devs.includes(member.user.id)
+        return permissions.some((perm) => member.hasPermission(perm, {
+            checkAdmin: true,
+            checkOwner: true
+        })) || devs.includes(member.user.id);
+    }
+};
