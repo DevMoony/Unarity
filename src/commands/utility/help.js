@@ -7,6 +7,8 @@ module.exports = class Help extends Command {
     }
 
     run(message, [query]) {
+        if(query && this.bot.getCommand(query)) {
 
+        }
     }
 }

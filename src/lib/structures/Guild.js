@@ -10,8 +10,8 @@ module.exports = () => Structures.extend("Guild", Guild =>
         };
 
         async findMember(message, query) {
-            let target = false;
-            if (message.mentions.users.first() && !message.mentions.members.first())
+            let target = message.mentions.members.first();
+            if (!target && message.mentions.users.first() && !message.mentions.members.first())
                 target = await this.fetchMember(message.mentions.users.first());
 
             if (!target)

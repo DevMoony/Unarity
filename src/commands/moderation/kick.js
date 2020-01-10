@@ -10,7 +10,7 @@ module.exports = class clear extends Command {
 
     async run(message, args) {
         if (!args[0]) return message.sm("Please mention a user to kick!", {type: "error"});
-        const kickMember = message.findMember(args[0]);
+        const kickMember = await message.findMember(args[0]);
         if (!kickMember) return message.sm("Couldn't find that member!", {type: "error"});
     }
 };

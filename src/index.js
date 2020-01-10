@@ -1,6 +1,6 @@
-require("dotenv").config({ path: __dirname + "/.env" });
+require("dotenv").config({path: __dirname + "/../.env"});
 const mongoose = require("mongoose");
-const { UnarityClient } = require("./lib/index");
+const {UnarityClient} = require("./lib/index");
 
 require("./lib/structures/Message")();
 require("./lib/structures/Guild")();
