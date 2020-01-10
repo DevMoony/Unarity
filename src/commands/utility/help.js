@@ -1,11 +1,12 @@
-const { Command } = require("../../lib");
+const {Command} = require("../../lib");
 module.exports = class Help extends Command {
     constructor() {
         super("help", {
-            aliases: ["h"],    
+            aliases: ["h"],
         });
     }
-    run(message, args) {
-        message.sm("n0");
+
+    run(message, [query]) {
+
     }
 }

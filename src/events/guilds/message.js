@@ -14,7 +14,7 @@ module.exports = class Message extends Event {
             if (!bot.handler.checkPerms(message.member, command.userPermissions))
                 return message.sm(`You don't have the required Permissions! Needed: ${command.userPermissions.join(" or ")}`);
             if (!bot.handler.checkPerms(message.guild.me, command.botPermissions))
-                return message.sm(`I don't have the required Permissions! Needed: ${command.userPermissions.join(" and ")}`);
+                return message.sm(`I don't have the required Permissions! Needed: ${command.botPermissions.join(" and ")}`);
             command.run(message, args)
         }
     }

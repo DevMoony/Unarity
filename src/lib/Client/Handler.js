@@ -60,10 +60,11 @@ module.exports = class Handler {
     }
 
     checkPerms(member, permissions) {
+        if (!permissions || !permissions[0]) return true;
         if (!Array.isArray(permissions)) return member.hasPermission(permissions, {
             checkAdmin: true,
             checkOwner: true
-        }) || devs.includes(member.user.id)
+        }) || devs.includes(member.user.id);
         return permissions.some((perm) => member.hasPermission(perm, {
             checkAdmin: true,
             checkOwner: true

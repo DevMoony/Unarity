@@ -16,5 +16,9 @@ module.exports = () => Structures.extend("Message", Message =>
                     new UnarityEmbed(this.client)[type](msg, this.author)
                 )
         }
+
+        findMember(query) {
+            this.guild.findMember(this, query);
+        }
     }
 );
