@@ -18,6 +18,12 @@ module.exports = () => Structures.extend("Guild", Guild =>
                 target = this.members.find((mem) => searchQuery(query, mem.name)) || this.members.get(query);
             return target;
         }
+        async rolerank(message, memRole) {
+            let role = message.guild.roles.highest.comparePositionTo(message.mentions.members.first().roles.highest);
+            if (!role && message.mentions.users.first() && !message.mentions.members.first())
+            const mem = this.findMember(message.mentions.users.first());     
+            role = await(this.rolerank(message, mem));
+        }
 
         get db() {
             if (this.database) return this.database;
