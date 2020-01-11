@@ -4,7 +4,12 @@ module.exports = class Command {
 
         this.userPermissions = [];
         this.botPermissions = [];
-        this.options = options || {aliases: [], cooldown: 0};
+        this.options = options || {
+            aliases: [],
+            cooldown: 0,
+            description: "Not Provided",
+            usage: "Not Provided"
+        };
     }
 
     run(message) {

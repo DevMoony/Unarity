@@ -8,12 +8,12 @@ module.exports = class clear extends Command {
         });
     }
 
-    async run(message, args) {
-        if (!args[0]) return message.sm("Please mention a user to kick!", {type: "error"});
+    async run(message, [member, ...reason]) {
+        console.log(reason);
+        if (!member) return message.sm("Please mention a user to kick!", {type: "error"});
         const kickMember = await message.findMember(args[0]);
         if (!kickMember) return message.sm("Couldn't find that member!", {type: "error"});
-        if (!args[1]) return message.sm("Please provide the reason", {type: "error"});
-        const reason = args.slice(1).join(" ");
+        if (!reason) return message.sm("Please provide the reason", {type: "error"});
 
     }
 };

@@ -17,6 +17,10 @@ module.exports = () => Structures.extend("Message", Message =>
                 )
         }
 
+        embed(type = "base") {
+            return new UnarityEmbed(this.client)[type]("cheese", this.author);
+        }
+
         findMember(query) {
             this.guild.findMember(this, query);
         }
