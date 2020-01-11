@@ -9,10 +9,10 @@ module.exports = class Help extends Command {
     }
 
     run(message, [query]) {
-        let helpEmbed;
+        let helpEmbed = message.embed();
         if (query && this.bot.handler.getCommand(query)) {
             const command = this.bot.handler.getCommand(query);
-            helpEmbed = message.embed()
+            helpEmbed
                 .setTitle(`${command.name[0].toUpperCase() + command.name.slice(1)}'s information`)
                 .setDescription([`**Category:** ${command.category}`,
                     `**Description:** ${command.options.description || "Not Provided"}`,
@@ -22,6 +22,19 @@ module.exports = class Help extends Command {
                 .addField("User Permissions Needed", command.userPermissions.join(", ") || "None")
                 .addField("Bot Permissions Needed", command.botPermissions.join(", ") || "Send Message, Embed Links")
                 .setFooter("[] = optional, {} = needed");
+        } else {
+            helpEmbed
+                .setTitle("Command")
+                .setDescription("!help [command] for more information");
+            const commands = this.bot.commands;
+            const categories = this.bot.commands
+                .reduce((acc, cmd) => acc.includes(cmd.category) ? acc : [...acc, cmd.category], []).sort();
+            categories.forEach((cat) => {
+                helpEmbed.addField(cat[0].toUpperCase() + cat.slice(1), commands.filter((cmd) => cmd.category === cat)
+                    .sort()
+                    .map((cmd) => `\`${cmd.name}\``)
+                    .join(", "))
+            });
         }
 
         message.channel.send(helpEmbed);

@@ -27,13 +27,12 @@ module.exports = class Handler {
         } catch (e) {
             console.log(`Error: => ${e}`);
         }
-        ;
+
     }
 
     loadEvents(dir) {
         if (!dir) throw Error("No Event Dir Detected");
         try {
-
             console.log("Loading Events");
             readdirSync(dir).forEach((category) => {
                 readdirSync(`${dir}/${category}`).filter((evt) => evt.endsWith(".js")).forEach((event) => {
@@ -52,7 +51,6 @@ module.exports = class Handler {
         } catch (e) {
             console.log(`Error: => ${e}`);
         }
-        ;
     }
 
     getCommand(command) {
