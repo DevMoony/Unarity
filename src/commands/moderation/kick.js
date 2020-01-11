@@ -13,7 +13,7 @@ module.exports = class clear extends Command {
         const kickMember = await message.findMember(args[0]);
         if (!kickMember) return message.sm("Couldn't find that member!", {type: "error"});
         if (!args[1]) return message.sm("Please provide the reason", {type: "error"});
-        const reason = args.join(" ");
-        
+        const reason = args.slice(1).join(" ");
+
     }
 };
